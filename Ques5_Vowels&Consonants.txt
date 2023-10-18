@@ -1,0 +1,14 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+[aeiouAEIOU]    printf("Vowel: %c\n", yytext[0]);
+[a-zA-Z]        printf("Consonant: %c\n", yytext[0]);
+.               printf("Other: %c\n", yytext[0]);
+%%
+
+int main() {
+    yylex();
+    return 0;
+}

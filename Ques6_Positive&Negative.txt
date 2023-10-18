@@ -1,0 +1,16 @@
+%{
+#include <stdio.h>
+%}
+
+DIGIT       [0-9]
+%%
+int yywrap() {
+    return 1;
+}
+[-+]?{DIGIT}+   { printf("%s number: %s\n", yytext[0] == '-' ? "Negative" : "Positive", yytext); }
+.|\n            { /* Ignore any other characters. */ }
+%%
+int main() {
+    yylex();
+    return 0;
+}
